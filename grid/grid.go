@@ -3,6 +3,7 @@ package grid
 import (
 	fmt "fmt"
 	rand "math/rand"
+	"time"
 
 	u "github.com/apottr/milsim/unit"
 )
@@ -60,8 +61,17 @@ func (t *Tile) Pp() {
 		Weather: %s
 		Unit count: %d 
 	`, t.utmCoordinate, t.weatherState.String(), len(t.units))
-	fmt.Println("Units in Tile:")
+	fmt.Println("\tUnits in Tile:")
 	for _, unit := range t.units {
 		unit.Pp()
 	}
+}
+
+//Step performs a time step on the tile
+func (t *Tile) Step() *Tile {
+	return t
+}
+
+func init() {
+	rand.Seed(time.Now().UnixNano())
 }
